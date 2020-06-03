@@ -1,0 +1,21 @@
+
+
+docker exec -it master bash
+nohup python3 main.py &
+exit
+
+docker exec -it head bash
+nohup python3 main.py &
+exit
+
+docker exec -it node1 bash
+nohup python3 main.py &
+exit
+
+docker exec -it node2 bash
+nohup python3 main.py &
+exit
+
+docker exec -it tail bash
+nohup python3 main.py &
+exit

@@ -1,0 +1,41 @@
+version: '3'
+services:
+  master:
+    container_name: master
+    build: ./master
+    ports:
+     - "5000:5000"
+    networks:
+      chainreplication:
+        ipv4_address: 172.50.0.2
+  head:
+    container_name: head
+    build: ./node
+    networks:
+      chainreplication:
+        ipv4_address: 172.50.0.3
+  node1:
+    container_name: node1
+    build: ./node
+    networks:
+      chainreplication:
+        ipv4_address: 172.50.0.4
+  node2:
+    container_name: node2
+    build: ./node
+    networks:
+      chainreplication:
+        ipv4_address: 172.50.0.5
+  tail:
+    container_name: tail
+    build: ./node
+    networks:
+      chainreplication:
+        ipv4_address: 172.50.0.6
+
+networks:
+  chainreplication:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.50.0.1/24
